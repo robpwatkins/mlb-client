@@ -16,7 +16,9 @@ const Standings = () => {
     }
 
     const fetchPicks = async () => {
-      const response = await fetch('/api/picks/all', { credentials: 'include' });
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/picks/all`, {
+        credentials: 'include'
+      });
       const json = await response.json();
       if (response.ok) setPicks(json);
     };

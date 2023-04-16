@@ -1,11 +1,13 @@
 const Admin = () => {
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
+
   const updateUserPicks = async (e) => {
     e.preventDefault();
 
     const seriesResponse = await fetch('/all-series');
     const allSeries = await seriesResponse.json();
-    
-    const picksResponse = await fetch('/api/picks/all', { credentials: 'include' });
+
+    const picksResponse = await fetch(`${serverUrl}/api/picks/all`, { credentials: 'include' });
     const picks = await picksResponse.json();
 
     for await (const { series: seriesGroup } of allSeries) {
@@ -33,7 +35,7 @@ const Admin = () => {
                 })
               };
     
-              await fetch(`/api/picks/${_id}`, options);
+              await fetch(`${serverUrl}/api/picks/${_id}`, options);
   
               successful ? wins++ : losses++;
 
@@ -61,7 +63,7 @@ const Admin = () => {
   const updateUserRecords = async (e) => {
     e.preventDefault();
 
-    const picksResponse = await fetch('/api/picks/all', { credentials: 'include' });
+    const picksResponse = await fetch(`${serverUrl}/api/picks/all`, { credentials: 'include' });
     const picks = await picksResponse.json();
 
     const usersResponse = await fetch('/users', { credentials: 'include' });

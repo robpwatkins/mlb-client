@@ -11,7 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch('/api/workouts', {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/workouts`, {
         headers: { 'Authorization': `Bearer ${user.token}` }
       });
       const json = await response.json();

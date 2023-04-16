@@ -29,7 +29,9 @@ export const AuthContextProvider = ({ children }) => {
       dispatch({ type: 'LOADED', payload: false });
 
       try {
-        const response = await fetch('/user', { credentials: 'include' });
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/user`, {
+          credentials: 'include'
+        });
         const { user, error } = await response.json();
 
         if (error) return dispatch({ type: 'ERROR', payload: error });
