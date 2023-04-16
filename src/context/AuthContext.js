@@ -25,6 +25,7 @@ export const AuthContextProvider = ({ children }) => {
   // const { loginUserWithSession } = useLogin();
 
   useEffect(() => {
+    console.log('process.env.REACT_APP_SERVER_URL: ', process.env.REACT_APP_SERVER_URL);
     const loginUserWithSession = async () => {
       dispatch({ type: 'LOADED', payload: false });
 
